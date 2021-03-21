@@ -28,25 +28,45 @@ class Contract extends Model
     'status'
   ];
 
+  /**
+     * retornas as tabelas prices do contrato
+     *
+     * @return Collection
+     */
   public function prices()
   {
       return $this->hasMany('App\Models\TablePrice', 'contract_id');
   }
 
 
-
+ /**
+     * retornas a ultima parcela do contrato
+     *
+     * @return Collection
+     */
 
    public function getLastPrice(){
      return TablePrice::where('contract_id',$this->contract_id)->orderBy('created_at','desc')->limit(1)->get();
   }
 
-
+ /**
+     * retornas a ultima parcela paga do contrato
+     *
+     * @return Object
+     */
   public function getLastPricePayment(){
     return TablePrice::where('contract_id',$this->contract_id)->orderBy('created_at','desc')->where('payment_status',1)->limit(1)->get()[0];
  }
    
 
-
+ /**
+     * faz o calculo da parcela do contrato
+     * @param  double  $tax
+     * @param  double  $amount
+     * @param  integer $periods
+     * @param  integer $contract_id
+     * @return double 
+     */
   static function generateValueParcel($tax,$amount,$periods,$contract=false){
 
    

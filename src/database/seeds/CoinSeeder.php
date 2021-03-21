@@ -12,8 +12,8 @@ class CoinSeeder extends Seeder
     public function run()
     {
         DB::table('coins')->insert([
-            'name' => 'Bitcoin',
-            'abbreviation' => 'BTC',
+            'name' => 'Real',
+            'abbreviation' => 'BRL',
         ]);
     }
 }

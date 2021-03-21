@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Log;
 class ContractController extends Controller
 {
 
+  /**
+     * Retorna todos os contratos do cliente
+     *
+     * @param  int  $member_id
+     * @param  string  $email
+     * @return Response
+     */  
+
+  #region
   public function getContrats(Request $request){
     $contracts = false;
     
@@ -76,7 +85,17 @@ class ContractController extends Controller
    
 
   }
+  #endregion
 
+  /**
+     * Renegocia o contrado do cliente
+     *
+     * @param  int  $member_id
+     * @param  int  $contract_id
+     * @param  int  $periods
+     * @return Response
+  */
+  #region
   public function renegotiateContract(Request $request){
     $this->validate($request, [
       'member_id' => 'required|integer|max:4',
@@ -151,9 +170,18 @@ class ContractController extends Controller
     
     
   }
+  #endregion
 
 
-
+  /**
+     * Marca parcela da tabela price como paga
+     *
+     * @param  int  $member_id
+     * @param  int  $contract_id
+     * @param  int  $quota
+     * @return Response
+  */
+  #region
   public function makePaymentPrice(Request $request)
   {
     $this->validate($request, [
@@ -164,8 +192,11 @@ class ContractController extends Controller
     ]);
 
     try {
-      if($contract = Contract::find($request->contract_id)){
-        $price = TablePrice::makePayment($request->contract_id,$request->quota);
+      $contract = Contract::find($request->contract_id); // persiste o contrato
+
+      // verifica se o membro e dono do contrato
+      if($contract->member_id == $request->member_id){
+        $price = TablePrice::makePayment($request->contract_id,$request->quota); // registra o pagamento da parcela informada
         return response()->json([
           'success' => true,
           'price' => $price,
@@ -189,7 +220,18 @@ class ContractController extends Controller
     }
    
   }
+  #endregion
 
+  /**
+     * Cria o contrado e a tabela price do cliente
+     *
+     * @param  int  $member_id
+     * @param  double  $amount
+     * @param  int  $periods
+     * @param  double  $rate
+     * @return Response
+  */
+  #region
   public function store(Request $request)
   {
 
@@ -242,28 +284,10 @@ class ContractController extends Controller
     }
 
     
-    
   }
 
+  #endregion
 
-  
-  
-  
-
-  function basicValidate(){
-      return [
-                'coin' => 'required|string|min:3|max:3',
-                'testnet' => 'required|boolean',
-      ];
-  }
-
-
-
-
-
-
-  
-  
 
   
 }

@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "0070c379-6c80-449f-a9fb-f385ec0c11e5",
+		"name": "Iouu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/member/create?name=Rogério&email=rogerio@elm.to5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"member",
+						"create"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Rogério",
+							"description": "nome do cliente"
+						},
+						{
+							"key": "email",
+							"value": "rogerio@elm.to5",
+							"description": "email do cliente"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createContract",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/contract/create?member_id=2&amount=45000&periods=32&rate=8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"contract",
+						"create"
+					],
+					"query": [
+						{
+							"key": "member_id",
+							"value": "2",
+							"description": "código do cliente"
+						},
+						{
+							"key": "amount",
+							"value": "45000",
+							"description": "valor a ser financiado (ex: 5000.00)"
+						},
+						{
+							"key": "periods",
+							"value": "32",
+							"description": "número de parcelas"
+						},
+						{
+							"key": "rate",
+							"value": "8",
+							"description": "taxa (ex 30%)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "makePayment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/contract/make/payment?member_id=2&contract_id=1&quota=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"contract",
+						"make",
+						"payment"
+					],
+					"query": [
+						{
+							"key": "member_id",
+							"value": "2",
+							"description": "codigo do cliente"
+						},
+						{
+							"key": "contract_id",
+							"value": "1",
+							"description": "contrado a ter a parcela paga"
+						},
+						{
+							"key": "quota",
+							"value": "1",
+							"description": "parcela a ser paga"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "renegotiateContract",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/contract/renegotiate?member_id=2&contract_id=1&periods=12&rate=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"contract",
+						"renegotiate"
+					],
+					"query": [
+						{
+							"key": "member_id",
+							"value": "2",
+							"description": "código do membro"
+						},
+						{
+							"key": "contract_id",
+							"value": "1",
+							"description": "código do contrato"
+						},
+						{
+							"key": "periods",
+							"value": "12",
+							"description": "número de parcelas"
+						},
+						{
+							"key": "rate",
+							"value": "5",
+							"description": "taxa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getContracts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/contract/client?member_id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"contract",
+						"client"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "",
+							"description": "email do cliente",
+							"disabled": true
+						},
+						{
+							"key": "member_id",
+							"value": "1",
+							"description": "código do cliente"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

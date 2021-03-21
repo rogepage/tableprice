@@ -25,6 +25,13 @@ class MemberController extends Controller
  
 
 
+   /**
+     * Cria o cliente
+     *
+     * @param  string  $name
+     * @param  string  $email
+     * @return Response
+     */  
 
   public function store(Request $request)
   {

@@ -40,12 +40,7 @@ class Handler extends ExceptionHandler
         $fe = FlattenException::create($exception);
         $statusCode = $fe->getStatusCode();
 
-        //$monologger = new Logger('slack');
-        //$slackHandler = new SlackWebhookHandler(env('LOG_SLACK_WEBHOOK_URL'),env('LOG_CHANNEL'),'Monolog');
-        //$monologger->pushHandler($slackHandler);
-        //dd(Errors::getLogLevel($statusCode));
-        //$monologger->addRecord(Errors::getLogLevel($statusCode), "status {$statusCode} at {$exception->getFile()} error {$exception->getMessage()}");
-        parent::report($exception);
+         parent::report($exception);
     }
 
     /**

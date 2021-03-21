@@ -29,7 +29,14 @@ class TablePrice extends Model
   ];
 
  
-
+ /**
+     * flega um registro da tabela price como pago
+   
+     * @param  integer  $status
+     * @param  integer $quota
+     * @param  integer $contract_id
+     * @return Object
+     */
   static function makePayment($contract_id, $quota, $status=1){
    $price =  TablePrice::where('contract_id',$contract_id)->where('quota',$quota)->get()[0];
   
@@ -43,6 +50,13 @@ class TablePrice extends Model
    return $price;
   }
 
+  /**
+     * gera a tabela price de um contrato
+   
+     * @param  object  $contract
+    
+     * @return Collection
+     */
   static function generateTablePriceByContract($contract){
     try {
     
@@ -76,54 +90,5 @@ class TablePrice extends Model
     }
 
   }
-  // static function genereteTablePrice2($contract_id){
-  //   try {
-  //     $contract = Contract::find($contract_id);
-  //     $balance = $contract->amount;
-  //     $GLOBALS['balance'] = $contract->amount;
-  //     for ($i = 1; $i <=  $contract->periods; $i++) {
-  //       if($i===1){
-  //           $juros = $contract->amount*$contract->rate;
-  //           $totalJuros = $contract->amount+$juros;
-  //           $saldoNovo = $totalJuros-$contract->parcel_value;
-  //           $amortizacao = $contract->parcel_value - $juros;
-
-  //           $tablePrice = new TablePrice();
-  //           $tablePrice->contract_id = $contract->contract_id;
-  //           $tablePrice->quota = $i;
-  //           $tablePrice->balance_due = $saldoNovo;
-  //           $tablePrice->fees = $juros;
-  //           $tablePrice->amortization = $contract->parcel_value-$juros;
-  //           $tablePrice->save();
-  //           $GLOBALS['balance'] = $saldoNovo;
-
-  //       }else{
-  //         // $lastPayment = $contract->prices->where('status',1)->sortByDesc('created_at')[0];
-  //         // $lastPrice = $contract->prices->sortByDesc('created_at')[0];
-  //         // $lastPrice= $contract->getLastPrice()[0];
-  //         $amount = $GLOBALS['balance'];
-         
-  //         $juros = $amount*$contract->rate;
-  //         $totalJuros = $amount+$juros;
-  //         $saldoNovo = $totalJuros-$contract->parcel_value;
-  //         $amortizacao = $contract->parcel_value - $juros;
-
-  //         $tablePrice = new TablePrice();
-  //         $tablePrice->contract_id = $contract->contract_id;
-  //         $tablePrice->quota = $i;
-  //         $tablePrice->balance_due = $saldoNovo;
-  //         $tablePrice->fees = $juros;
-  //         $tablePrice->amortization = $contract->parcel_value-$juros;
-  //         $tablePrice->save();
-  //         $GLOBALS['balance'] = $saldoNovo;
-  //       }
-  //     }
-     
-  //   } catch (\Throwable $th) {
-  //     throw $th;
-  //   }
-    
-
-  // }
   
 }
