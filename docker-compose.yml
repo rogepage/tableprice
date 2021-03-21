@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+    database_mysql:
+        image: mariadb
+        container_name: db
+        env_file: ./docker/database-mysql/.env
+        ports:
+            - 3306:3306
+        volumes:
+            - ./mysql:/var/lib/mysql
+        networks:
+            - rede-iouu
+    app_php:
+        build: .
+        depends_on:
+            - database_mysql
+        env_file: ./src/.env
+        image: app_php
+        container_name: api
+        ports:
+            - 80:80
+        volumes:
+            - /tmp/composer:/root/.composer
+            - ./src/:/var/www/html/
+        networks:
+            - rede-iouu
+networks:
+    rede-iouu:
+        driver: bridge

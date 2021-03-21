@@ -1,0 +1,20 @@
+<?php 
+return [
+'default' => env('DB_DEFAULT', 'mysql'),
+
+'connections' => [
+
+    'mysql_testing' => [
+        'driver'    => 'mysql',
+        'host'      => env('TEST_DB_HOST', 'db'),
+        'database'  => env('TEST_DB_DATABASE', 'iouu'),
+        'username'  => env('TEST_DB_USERNAME', 'iouu'),
+        'password'  => env('TEST_DB_PASSWORD', 'iouu2021'),
+        'charset'   => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+        'prefix'    => '',
+        'strict'    => false,
+    ],
+],
+];
+
