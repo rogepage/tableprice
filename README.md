@@ -67,7 +67,7 @@ Response
  - json // dados do contrato e tabela price
 ```
 
-> Paragar a parcela
+> Pagar a parcela
 
 ```php
 http://localhost/api/contract/make/payment
